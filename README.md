@@ -1,76 +1,78 @@
-# 家族族谱 (Family Tree)
+# Family Tree
 
-这是一个基于 [Next.js](https://nextjs.org) 开发的家族谱展示项目，可以用来展示和管理您的家族历史和成员关系。
+English | [中文](./README.zh.md)
 
-## 演示网站
+A family tree visualization project built with [Next.js](https://nextjs.org) for displaying and managing your family history and member relationships.
 
-您可以通过访问 [https://familytree.pomodiary.com/](https://familytree.pomodiary.com/) 查看本项目的在线演示。
+## Demo Website
 
-## 功能特点
+You can visit [https://familytree.pomodiary.com/](https://familytree.pomodiary.com/) to see an online demonstration of this project.
 
-- 多代家族成员的可视化展示
-- 家族成员之间的关系链接
-- 个人详细信息记录
-- 可选的登录验证机制
-- 完全可定制的界面和数据
+## Features
 
-## 快速开始
+- Visual representation of multiple generations of family members
+- Relationship connections between family members
+- Detailed personal information records
+- Optional login authentication mechanism
+- Fully customizable interface and data
 
-### 安装依赖
+## Quick Start
+
+### Install Dependencies
 
 ```bash
 npm install
-# 或
+# or
 yarn install
-# 或
+# or
 pnpm install
-# 或
+# or
 bun install
 ```
 
-### 配置项目
+### Configure the Project
 
-1. 复制环境变量模板并进行配置：
+1. Copy the environment variable template and configure it:
 
 ```bash
 cp .env.local.example .env.local
 ```
 
-2. 在 `.env.local` 文件中设置您的配置：
+2. Set your configurations in the `.env.local` file:
 
 ```
-# 是否需要登录验证 (true/false)
+# Whether login authentication is required (true/false)
 NEXT_PUBLIC_REQUIRE_AUTH=false
 
-# 验证模式 (all: 允许所有家族成员, specific: 只允许输入特定名称)
+# Authentication mode (all: allow all family members, specific: only allow specific names)
 AUTH_MODE=specific
-# 特定用户登录名称
+# Specific user login name
 SPECIFIC_NAME=白景琦
 
-# 姓氏配置（用于网站标题、描述和页脚）
+# Surname configuration (for website title, description, and footer)
 NEXT_PUBLIC_FAMILY_NAME=白
 
-# 应用端口号配置
+# Application port configuration
 PORT=3000
 ```
 
-### 添加家族数据
+### Add Family Data
 
-1. 在 `config` 目录中创建您的家族数据文件`family-data.json`，可以参考 `family-data.example.json` 或 `family-data.json`。
+1. Create your family data file `family-data.json` in the `config` directory, you can refer to `family-data.example.json` or `family-data.json`.
 
-2. 按照以下格式添加您的家族成员信息：
+2. Add your family member information in the following format:
 
 ```json
 {
   "generations": [
     {
-      "title": "第一世",
+      "title": "First Generation",
       "people": [
         {
           "id": "person-id",
-          "name": "姓名",
-          "info": "人物描述",
-          "fatherId": "父亲ID",
+          "name": "Name",
+          "info": "Person description",
+          "fatherId": "Father's ID",
           "birthYear": 1900,
           "deathYear": 1980
         }
@@ -80,67 +82,67 @@ PORT=3000
 }
 ```
 
-字段说明：
-- `id`: 每个人的唯一标识符，用于建立关系
-- `name`: 姓名
-- `info`: 个人描述、生平简介等
-- `fatherId`: 父亲的ID，用于建立代际关系
-- `birthYear`: 出生年份（可选）
-- `deathYear`: 逝世年份（可选）
+Field descriptions:
+- `id`: Unique identifier for each person, used to establish relationships
+- `name`: Name
+- `info`: Personal description, life summary, etc.
+- `fatherId`: Father's ID, used to establish generational relationships
+- `birthYear`: Birth year (optional)
+- `deathYear`: Death year (optional)
 
-### 运行项目
+### Run the Project
 
 ```bash
 npm run dev
-# 或
+# or
 yarn dev
-# 或
+# or
 pnpm dev
-# 或
+# or
 bun dev
 ```
 
-访问 [http://localhost:3000](http://localhost:3000) 查看您的家族谱。
+Visit [http://localhost:3000](http://localhost:3000) to view your family tree.
 
-## 数据格式详解
+## Data Format Details
 
-家族数据以 JSON 格式存储，按照世代（generations）组织：
+Family data is stored in JSON format, organized by generations:
 
-- 每个世代有一个标题（title）和一组人员（people）
-- 每个人员包含 ID、姓名、信息和父亲ID
-- 通过 `fatherId` 建立父子关系
-- 可以在信息字段中添加配偶、子女和其他重要信息
+- Each generation has a title and a group of people
+- Each person includes ID, name, information, and father's ID
+- Parent-child relationships are established through `fatherId`
+- You can add spouse, children, and other important information in the info field
 
-示例：
+Example:
 ```json
 {
   "generations": [
     {
-      "title": "第一世",
+      "title": "First Generation",
       "people": [
         {
           "id": "ancestor",
-          "name": "始祖",
-          "info": "家族创始人，生于1850年",
+          "name": "Ancestor",
+          "info": "Family founder, born in 1850",
           "birthYear": 1850
         }
       ]
     },
     {
-      "title": "第二世",
+      "title": "Second Generation",
       "people": [
         {
           "id": "second-gen-1",
-          "name": "长子",
-          "info": "生于1880年，妻王氏",
+          "name": "First Son",
+          "info": "Born in 1880, wife Wang",
           "fatherId": "ancestor",
           "birthYear": 1880,
           "deathYear": 1950
         },
         {
           "id": "second-gen-2",
-          "name": "次子",
-          "info": "生于1885年，妻李氏",
+          "name": "Second Son",
+          "info": "Born in 1885, wife Li",
           "fatherId": "ancestor",
           "birthYear": 1885,
           "deathYear": 1960
@@ -151,70 +153,69 @@ bun dev
 }
 ```
 
-## 利用AI生成家族数据
+## Using AI to Generate Family Data
 
-如果您有大量家族数据需要整理，可以借助AI来帮助您快速生成符合格式的JSON数据：
+If you have a large amount of family data to organize, you can use AI to help you quickly generate JSON data in the correct format:
 
-1. 准备您的家族信息文本，包括各代人物姓名、关系和相关信息
-2. 向AI（如DeepSeek、ChatGPT、Claude等）提供以下格式指引：
+1. Prepare your family information text, including names, relationships, and relevant information for each generation
+2. Provide the following format guide to AI (such as DeepSeek, ChatGPT, Claude, etc.):
 
 ```
-请将我提供的家族信息整理成以下JSON格式：
+Please organize the family information I provide into the following JSON format:
 {
   "generations": [
     {
-      "title": "第X世",
+      "title": "Xth Generation",
       "people": [
         {
-          "id": "唯一标识符",
-          "name": "姓名",
-          "info": "详细信息",
-          "fatherId": "父亲ID",
-          "birthYear": 出生年份,
-          "deathYear": 逝世年份
+          "id": "unique-identifier",
+          "name": "Name",
+          "info": "Detailed information",
+          "fatherId": "Father's ID",
+          "birthYear": birth year,
+          "deathYear": death year
         }
       ]
     }
   ]
 }
 
-要求：
-1. 为每个人物生成唯一的id（如first-gen-1, second-gen-2等）
-2. 正确设置fatherId以建立父子关系
-3. 将人物按世代归类
-4. 在info字段包含配偶、事迹等信息
-5. 使用birthYear和deathYear分别记录出生和逝世年份（若有）
-6. 确保JSON格式有效且可直接导入系统使用
+Requirements:
+1. Generate a unique id for each person (such as first-gen-1, second-gen-2, etc.)
+2. Correctly set fatherId to establish parent-child relationships
+3. Categorize people by generation
+4. Include spouse, achievements, etc. in the info field
+5. Use birthYear and deathYear to record birth and death years (if available)
+6. Ensure the JSON format is valid and can be directly imported into the system
 ```
 
-3. 将AI生成的JSON复制到`config/family-data.json`文件中
-4. 检查并调整生成的数据，确保关系准确、格式正确
+3. Copy the AI-generated JSON to the `config/family-data.json` file
+4. Check and adjust the generated data to ensure relationships are accurate and the format is correct
 
+This method can quickly convert unstructured family information into the JSON format required by the system, particularly suitable for large amounts of data.
 
-这种方式可以快速将非结构化的家族信息转换为系统所需的JSON格式，尤其适合数据量较大的情况。
+## Customization and Extension
 
-## 自定义与扩展
+- Adjust the data file in `config/family-data.json` to update family information
+- Edit the `.env.local` file to change configuration and authentication methods
 
-- 调整 `config/family-data.json` 中的数据文件更新家族信息
-- 编辑 `.env.local` 文件更改配置和验证方式
+## Deployment
 
-## 部署
+It is recommended to deploy your family tree project using the [Vercel platform](https://vercel.com/new):
 
-推荐使用 [Vercel 平台](https://vercel.com/new) 部署您的家族谱项目：
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Import your repository on Vercel
+3. Set environment variables
+4. Deploy
 
-1. 将代码推送到 GitHub/GitLab/Bitbucket
-2. 在 Vercel 上导入您的仓库
-3. 设置环境变量
-4. 部署
+## Related Services
 
-## 相关服务
+**[FateMaster.AI](https://www.fatemaster.ai)** - AI Chinese astrology website, providing intelligent fortune analysis services.
 
-**[FateMaster.AI](https://www.fatemaster.ai)** - AI八字算命网站，提供智能化命理分析服务。
+## Contribution
 
-## 贡献
+Pull Requests and Issues are welcome to improve this project.
 
-欢迎提交 Pull Request 或创建 Issue 来改进这个项目。
-
-## 许可
+## License
 
 MIT
